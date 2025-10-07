@@ -96,3 +96,29 @@ a.link{color:var(--accent);text-decoration:none}
   line-height: 1.6;
 }
 
+@media (max-width: 600px) {
+  nav .nav-list {
+    
+    align-items: flex-start; /* 左寄せにする */
+    gap: 6px;
+  }
+
+  nav .nav-list button {
+    width: auto;              /* ← 文字サイズに合わせる！ */
+    font-size: 14px;          /* スマホ向けに少し小さめ */
+    padding: 6px 10px;        /* 余白もコンパクトに */
+    min-width: unset;         /* 既存の min-width:120px を解除 */
+  }
+}
+
+@media (max-width: 600px) {
+  .title {
+    font-size: 20px;   /* 通常28px → スマホでは20pxに */
+    padding-bottom: 4px;
+  }
+
+  .title::after {
+    height: 2px;       /* 下線も少し細くする */
+  }
+}
+
