@@ -6,7 +6,7 @@
   <title>第62回オリエンテーリング二本松大会大会</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap" rel="stylesheet">
   <!-- 外部CSSの読み込み -->
-  <link rel="stylesheet" href="test.css">
+  <link rel="stylesheet" href="test2.css">
 </head>
 <body>
   <header>
@@ -115,14 +115,15 @@
     </script>
 
     <!-- スタートリスト -->
-    <section id="startlist" class="page">
-      <div class="card">
-        <h2>スタートリスト</h2>
-        <p>順次公開予定</p>
-      </div>
-    </section>
+   <section id="startlist" class="page">
+  <div class="card">
+    <h2>スタートリスト</h2>
 
-    <!-- エントリー -->
+    <!-- ここにスマホ/PCで切り替えるPDF枠を設置 -->
+    <div id="startlist-container"></div>
+  </div>
+</section>
+ <!-- エントリー -->
     <section id="entry" class="page">
       <div class="card">
         <h2>エントリー</h2>
@@ -185,5 +186,41 @@
 
 
 </script>
+
+<script>
+  function loadPdfForDevice(containerId, pdfPath) {
+    const container = document.getElementById(containerId);
+
+    // スマホ判定
+    const isMobile = /iPhone|Android.+Mobile/.test(navigator.userAgent);
+
+    if (isMobile) {
+      // スマホ：新しいタブで PDF を開く
+      container.innerHTML = `
+        <p>
+          <a href="${pdfPath}" target="_blank" class="pdf-button" rel="noopener">
+            📄 スタートリストを開く（PDF）
+          </a>
+        </p>
+      `;
+    } else {
+      // PC：埋め込み表示
+      container.innerHTML = `
+        <iframe 
+          src="${pdfPath}" 
+          width="100%" 
+          height="600px" 
+          style="border:none;">
+        </iframe>
+      `;
+    }
+  }
+
+  // スタートリストの PDF を読み込み
+  document.addEventListener("DOMContentLoaded", () => {
+    loadPdfForDevice("startlist-container", "スタートリスト.pdf");
+  });
+</script>
+
 </body>
 </html>
